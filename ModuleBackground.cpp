@@ -66,10 +66,10 @@ update_status ModuleBackground::Update()
 	if (ship_y < -5 || ship_y >= 0)
 		ship_speed = -ship_speed;
 
-	App->render->Blit(graphics, 0, (int)roundf(ship_y), &ship, 1.01f);
-	App->render->Blit(graphics, 200 - ship.x, 128 - ship.y + (int)roundf(ship_y), &girl.GetCurrentFrame(), 1.01f);
+	App->render->Blit(graphics, 0, (int)roundf(ship_y), &ship, 1.1f);
 
 	// TODO 3: Animate the girl on the ship (see the sprite sheet)
+	App->render->Blit(graphics, 200 - ship.x, 128 - ship.y + (int)roundf(ship_y), &girl.GetCurrentFrame(), 1.1f);
 	
 	App->render->Blit(graphics, 0, 170, &ground);
 

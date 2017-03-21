@@ -30,6 +30,15 @@ ModulePlayer::ModulePlayer()
 	forward.speed = 0.1f;
 
 	// TODO 4: Make ryu walk backwards with the correct animations
+	backward.PushBack({ 540, 131, 61, 87 });
+	backward.PushBack({ 628, 129, 59, 90 });
+	backward.PushBack({ 712, 128, 57, 90 });
+	backward.PushBack({ 797, 127, 58, 90 });
+	backward.PushBack({ 883, 128, 58, 91 });
+	backward.PushBack({ 974, 129, 57, 89 });
+	backward.speed = 0.1f;
+
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -51,10 +60,15 @@ update_status ModulePlayer::Update()
 
 	int speed = 1;
 
-	if(App->input->keyboard[SDL_SCANCODE_D] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
 	{
 		current_animation = &forward;
 		position.x += speed;
+	}
+	else if (App->input->keyboard[SDL_SCANCODE_A] == 1)
+	{
+		current_animation = &backward;
+		position.x -= speed;
 	}
 
 	// Draw everything --------------------------------------
