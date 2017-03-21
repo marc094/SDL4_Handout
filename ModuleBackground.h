@@ -21,7 +21,12 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
+	SDL_Rect ship;
+	int ship_movement = 0;
+	float ship_y = 0;
+	float ship_speed = 0.02f;
 	Animation flag;
+	Animation girl;
 
 };
 

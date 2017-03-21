@@ -58,6 +58,11 @@ update_status ModuleRender::Update()
 		camera.y -= speed;
 
 	// TODO 1: Make the camera move left and right
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
+		camera.x += speed;
+
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
+		camera.x -= speed;
 
 	return update_status::UPDATE_CONTINUE;
 }
