@@ -38,7 +38,17 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 974, 129, 57, 89 });
 	backward.speed = 0.1f;
 
+	// uppercut animation
+	punch_2.PushBack({ 759, 519, 66, 93 });
+	punch_2.PushBack({ 848, 518, 89, 93 });
+	punch_2.PushBack({ 950, 500, 82, 113 });
+	punch_2.speed = 0.025f;
 
+	// round
+	punch_1.PushBack({ 253, 269, 60, 94 });
+	punch_1.PushBack({ 333 , 268, 74, 95 });
+	punch_1.PushBack({ 432 , 268, 108, 94 });
+	punch_1.speed = 0.02f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -59,8 +69,21 @@ update_status ModulePlayer::Update()
 	Animation* current_animation = &idle;
 
 	int speed = 1;
-
-	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
+	if (((App->input->keyboard[SDL_SCANCODE_P] == 1 && App->input->keyboard[SDL_SCANCODE_LSHIFT] == 1) || punching_2) && !punching_1)
+	{
+		current_animation = &punch_2;
+		punching_2 = true;
+		if (current_animation->getAnimationEnd())
+			punching_2 = false;
+	}
+	else if ((App->input->keyboard[SDL_SCANCODE_P] == 1 || punching_1) && !punching_2)
+	{
+		current_animation = &punch_1;
+		punching_1 = true;
+		if (current_animation->getAnimationEnd())
+			punching_1 = false;
+	}
+	else if (App->input->keyboard[SDL_SCANCODE_D] == 1)
 	{
 		current_animation = &forward;
 		position.x += speed;

@@ -13,6 +13,7 @@ public:
 private:
 	float current_frame;
 	int last_frame = 0;
+	bool anim_end = false;
 
 public:
 
@@ -23,11 +24,18 @@ public:
 
 	SDL_Rect& GetCurrentFrame()
 	{
+		anim_end = false;
 		current_frame += speed;
-		if(current_frame >= last_frame)
+		if (current_frame >= last_frame) {
 			current_frame = 0;
+			anim_end = true;
+		}
 
 		return frames[(int)current_frame];
+	}
+
+	bool getAnimationEnd() {
+		return anim_end;
 	}
 };
 

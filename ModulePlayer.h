@@ -23,6 +23,11 @@ public:
 	Animation idle;
 	Animation forward;
 	Animation backward;
+	Animation punch_1;
+	Animation punch_2;
+	bool punching_1 = false;
+	bool punching_2 = false;
+	Animation Round_Kick;
 	iPoint position;
 
 };
